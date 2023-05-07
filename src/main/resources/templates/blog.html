@@ -11,10 +11,10 @@
 <h3>BLOG_APP MAIN PAGE</h3>
 <h3>___________________________________________________________________________________________________________________________________</h3>
 
-<div th:if = "${#lists.isEmpty(posts)}"> There are no posts to show :(</div>
+<div th:if = "${#lists.isEmpty(posts)}"> There are no posts</div>
 <div th:unless="${#lists.isEmpty(posts)}">
   <ul th:each="post: ${posts}">
-    <li> <a th:href="@{/blog/{postId}(postId=${post.postId})}" th:text="${post.postName}"></a>
+    <li> <a th:href="@{/blog/{postId}(postId=${post.id})}" th:text="${post.postName}"></a>
       <h6>
         post created at:
         <small class="text-muted" th:text=" ${post.postDate}"></small>

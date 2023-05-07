@@ -4,9 +4,11 @@ import lombok.AllArgsConstructor;
 import lt.code.academy.blogmongo.dto.Comment;
 import lt.code.academy.blogmongo.dto.Post;
 import lt.code.academy.blogmongo.service.PostService;
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -40,5 +42,12 @@ public class PostControler {
         model.addAttribute("message", "Post created successfully");
         return "/form/post";
 
+    }
+
+    @GetMapping("/{postId}")
+    public String showSinglePost (@PathVariable ObjectId postId, Model model){
+        model.addAttribute("post", postService.showSinglePost(postId));
+        model.addAttribute("comment", new Comment());
+        return "singlePost";
     }
 }
