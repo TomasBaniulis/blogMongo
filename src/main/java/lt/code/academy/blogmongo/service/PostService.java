@@ -9,8 +9,10 @@ import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @AllArgsConstructor
 @Service
@@ -46,6 +48,14 @@ public class PostService {
     }
 
     public void createComment (ObjectId id, Comment comment){
+        Post post = showSinglePost(id);
+        List <Comment> comments = post.getComments();
+        comment.setId(UUID.randomUUID());
+        comment.setDateTime(LocalDateTime.now());
+        comment.setUsername("Tomas");
+        comments.add(comment);
+        post.setComments(comments);
+        postRepository.save(PostDocument.convert(post));
 
     }
 

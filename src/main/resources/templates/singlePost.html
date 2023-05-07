@@ -18,7 +18,7 @@
 
     </div>
 
-    <form method="post" th:object="${comment}">
+    <form method="post" th:object="${comment}" th:action="@{/blog/{postId}/newComment(postId=${post.id})}">
             <div class="mb-3">
                 <label for="comment" class="form-label">New comment:</label>
                 <textarea class="form-control" id="comment" rows="3" placeholder="comment here" th:field="*{commentText}"></textarea>
@@ -31,8 +31,8 @@
     <div th:unless="${#lists.isEmpty(post.comments)}">
         <div th:each=" comment : ${post.comments}">
             <div>
-                <h5 th:text="'comented on:' + ${comment.commentDate}"></h5>
-                <h4 th:text="'user' + ${comment.username}"></h4>
+                <h5 th:text="'comented on: ' + ${comment.dateTime}"></h5>
+                <h4 th:text="'user: ' + ${comment.username}"></h4>
                 <div th:text="${comment.commentText}"></div>
             </div>
         </div>

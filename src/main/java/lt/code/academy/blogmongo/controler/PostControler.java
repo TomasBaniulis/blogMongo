@@ -68,6 +68,12 @@ public class PostControler {
         return "redirect:/blog";
     }
 
+    @PostMapping("/{postId}/newComment")
+    public String createComment (@PathVariable ObjectId postId, Comment comment){
+        postService.createComment(postId, comment);
+        return "redirect:/blog/" + postId;
+    }
+
 
 
 }
