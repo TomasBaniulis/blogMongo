@@ -50,14 +50,23 @@ public class PostService {
     public void createComment (ObjectId id, Comment comment){
         Post post = showSinglePost(id);
         List <Comment> comments = post.getComments();
-        comment.setId(UUID.randomUUID());
+        comment.setId(UUID.randomUUID().toString());
         comment.setDateTime(LocalDateTime.now());
         comment.setUsername("Tomas");
         comments.add(comment);
         post.setComments(comments);
         postRepository.save(PostDocument.convert(post));
-
     }
+
+    public void deleteComment (ObjectId postId, String commentId){
+        List<Comment> comments = showSinglePost(postId).getComments();
+        comments.removeIf( c -> c.getId().equals(commentId));
+        Post post = showSinglePost(postId);
+        post.setComments(comments);
+        postRepository.save(PostDocument.convert(post));
+    }
+
+
 
 
 

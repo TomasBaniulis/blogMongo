@@ -34,6 +34,7 @@
                 <h5 th:text="'comented on: ' + ${comment.dateTime}"></h5>
                 <h4 th:text="'user: ' + ${comment.username}"></h4>
                 <div th:text="${comment.commentText}"></div>
+                <button type="button" class="btn btn-danger" ><a th:href="@{/blog/{postId}/{commentId}/delete(commentId=${comment.id},postId=${post.id})}"> DELETE</a> </button>
             </div>
         </div>
     </div>

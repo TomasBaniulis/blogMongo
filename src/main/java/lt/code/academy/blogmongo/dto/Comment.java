@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -14,7 +16,8 @@ import java.util.UUID;
 @Getter
 @AllArgsConstructor
 public class Comment {
-    private UUID id;
+
+    private String id;
     private String commentText;
     private String username;
     private LocalDateTime dateTime;

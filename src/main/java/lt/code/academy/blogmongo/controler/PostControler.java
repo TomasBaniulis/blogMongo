@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @AllArgsConstructor
 @Controller
@@ -71,6 +72,12 @@ public class PostControler {
     @PostMapping("/{postId}/newComment")
     public String createComment (@PathVariable ObjectId postId, Comment comment){
         postService.createComment(postId, comment);
+        return "redirect:/blog/" + postId;
+    }
+
+    @GetMapping("/{postId}/{commentId}/delete")
+    public String deleteComment (@PathVariable ObjectId postId, @PathVariable String commentId){
+        postService.deleteComment(postId, commentId);
         return "redirect:/blog/" + postId;
     }
 
