@@ -50,4 +50,24 @@ public class PostControler {
         model.addAttribute("comment", new Comment());
         return "singlePost";
     }
+    @GetMapping("/{postId}/update")
+    public String updatePostForm (@PathVariable ObjectId postId, Model model){
+        model.addAttribute("post", postService.showSinglePost(postId));
+        return "/form/postUpdate";
+    }
+    @PostMapping("/{postId}/update")
+    public String updatePost (Post post, @PathVariable ObjectId postId){
+        postService.updatePost(post);
+        return "redirect:/blog/" + post.getId();
+    }
+
+    @GetMapping("/{postId}/delete")
+    public String deletePost (@PathVariable ObjectId postId, Model model){
+        postService.deletePost(postId);
+        model.addAttribute("posts", postService.showAllPosts());
+        return "redirect:/blog";
+    }
+
+
+
 }

@@ -12,6 +12,12 @@
     <h2 th:text="${post.postName}"></h2>
     <div th:text="${post.postText}"></div>
 
+    <div>
+        <button class="btn btn-warning"  type="button"> <a th:href="@{/blog/{postId}/update(postId=${post.id})}"> UPDATE </a> </button>
+
+
+    </div>
+
     <form method="post" th:object="${comment}">
             <div class="mb-3">
                 <label for="comment" class="form-label">New comment:</label>

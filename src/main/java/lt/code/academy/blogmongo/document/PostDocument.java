@@ -27,7 +27,7 @@ public class PostDocument {
     private String picture;
     private List<Comment> comments;
 
-    public  static PostDocument convert (Post post, String posts){
+    public  static PostDocument convert (Post post){
         return new PostDocument(post.getId(),
                 post.getPostName(),
                 post.getPostText(),

@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">>
 <head>
   <meta charset="UTF-8">
@@ -20,10 +20,15 @@
     <div class="mb-3">
       <label for="pictureLink" class="form-label">Header</label>
       <input type="text" class="form-control" id="pictureLink" placeholder="Picture link" th:field="*{picture}">
+      <input type="hidden" th:field="*{id}">
     </div>
     <button type="submit" class="btn btn-primary">UPDATE</button>
+
+
   </div>
 </form>
+<button type="button" class="btn btn-danger" ><a th:href="@{/blog/{postId}/delete(postId=${post.id})}"> DELETE</a> </button>
+>
 
 </body>
 </html>
