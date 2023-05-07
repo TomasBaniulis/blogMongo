@@ -7,6 +7,7 @@
   <title>Post UPDATE</title>
 </head>
 <body>
+<div class="container-sm" >
 <form method="post" th:object="${post}">
   <div>
     <div class="mb-3">
@@ -28,7 +29,8 @@
   </div>
 </form>
 <button type="button" class="btn btn-danger" ><a th:href="@{/blog/{postId}/delete(postId=${post.id})}"> DELETE</a> </button>
->
+
+</div>
 
 </body>
 </html>

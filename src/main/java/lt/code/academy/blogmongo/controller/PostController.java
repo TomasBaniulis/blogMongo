@@ -1,4 +1,4 @@
-package lt.code.academy.blogmongo.controler;
+package lt.code.academy.blogmongo.controller;
 
 import lombok.AllArgsConstructor;
 import lt.code.academy.blogmongo.dto.Comment;
@@ -15,12 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @AllArgsConstructor
 @Controller
 @RequestMapping("/blog")
-public class PostControler {
+public class PostController {
 
     private final PostService postService;
     @GetMapping()
