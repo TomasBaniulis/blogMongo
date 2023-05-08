@@ -10,8 +10,59 @@
 
 
 
+
+
+
 <body>
 <div class="container-sm">
+
+  <nav class="navbar bg-dark" data-bs-theme="dark">
+
+    <div class="container-fluid">
+      <div  >
+        <span > __</span>
+        <svg xmlns="http://www.w3.org/2000/svg" color="white" width="40" height="40" fill="currentColor" class="bi bi-bicycle" viewBox="0 0 16 16">
+          <path d="M4 4.5a.5.5 0 0 1 .5-.5H6a.5.5 0 0 1 0 1v.5h4.14l.386-1.158A.5.5 0 0 1 11 4h1a.5.5 0 0 1 0 1h-.64l-.311.935.807 1.29a3 3 0 1 1-.848.53l-.508-.812-2.076 3.322A.5.5 0 0 1 8 10.5H5.959a3 3 0 1 1-1.815-3.274L5 5.856V5h-.5a.5.5 0 0 1-.5-.5zm1.5 2.443-.508.814c.5.444.85 1.054.967 1.743h1.139L5.5 6.943zM8 9.057 9.598 6.5H6.402L8 9.057zM4.937 9.5a1.997 1.997 0 0 0-.487-.877l-.548.877h1.035zM3.603 8.092A2 2 0 1 0 4.937 10.5H3a.5.5 0 0 1-.424-.765l1.027-1.643zm7.947.53a2 2 0 1 0 .848-.53l1.026 1.643a.5.5 0 1 1-.848.53L11.55 8.623z"/>
+        </svg>
+        <span > __</span>
+
+        <a href="#" class="btn btn-outline-warning">BLOG</a>
+        <a href="#" class="btn btn-outline-warning" tabindex="-1" role="button" aria-disabled="true">NEW POST</a>
+        <a href="#" class="btn btn-outline-warning" tabindex="-1" role="button" aria-disabled="true">SIGN UP</a>
+        <a href="#" class="btn btn-outline-danger" tabindex="-1" role="button" aria-disabled="true"> <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" fill="currentColor" class="bi bi-bicycle" viewBox="0 0 16 16">
+          <path d="M4 4.5a.5.5 0 0 1 .5-.5H6a.5.5 0 0 1 0 1v.5h4.14l.386-1.158A.5.5 0 0 1 11 4h1a.5.5 0 0 1 0 1h-.64l-.311.935.807 1.29a3 3 0 1 1-.848.53l-.508-.812-2.076 3.322A.5.5 0 0 1 8 10.5H5.959a3 3 0 1 1-1.815-3.274L5 5.856V5h-.5a.5.5 0 0 1-.5-.5zm1.5 2.443-.508.814c.5.444.85 1.054.967 1.743h1.139L5.5 6.943zM8 9.057 9.598 6.5H6.402L8 9.057zM4.937 9.5a1.997 1.997 0 0 0-.487-.877l-.548.877h1.035zM3.603 8.092A2 2 0 1 0 4.937 10.5H3a.5.5 0 0 1-.424-.765l1.027-1.643zm7.947.53a2 2 0 1 0 .848-.53l1.026 1.643a.5.5 0 1 1-.848.53L11.55 8.623z"/>
+        </svg> PORN</a>
+
+      </div>
+
+      <div>
+
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+          <button type="button" class="btn btn-light btn-sm">LOG IN</button>
+          <button type="button" class="btn btn-light btn-sm">LOG OUT</button>
+
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+              <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="card text-bg-dark">
+    <img src="https://www.orbea.com/img/microsite-modules/banner_full/05_the-anatomy-of-fast.jpg" alt="...">
+    <div class="card-img-overlay">
+      <h1 class="card-title">Tomas cycling BLOG</h1>
+      <p class="card-text">The older I get, the faster I was...</p>
+      <p class="card-text"><small>Cycling since 2020</small></p>
+    </div>
+  </div>
 
 <div th:if = "${#lists.isEmpty(posts)}"> There are no posts</div>
 
