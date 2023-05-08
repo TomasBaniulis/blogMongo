@@ -8,12 +8,7 @@
   <title>BLOG</title>
 </head>
 
-
-
-
-
-
-<body>
+<body style="background-color: black">
 <div class="container-sm">
 
   <nav class="navbar bg-dark" data-bs-theme="dark">
@@ -26,8 +21,8 @@
         </svg>
         <span > __</span>
 
-        <a href="#" class="btn btn-outline-warning">BLOG</a>
-        <a href="#" class="btn btn-outline-warning" tabindex="-1" role="button" aria-disabled="true">NEW POST</a>
+        <a th:href="@{/blog}" class="btn btn-outline-warning">BLOG</a>
+        <a th:href="@{/blog/create}" class="btn btn-outline-warning" tabindex="-1" role="button" aria-disabled="true">NEW POST</a>
         <a href="#" class="btn btn-outline-warning" tabindex="-1" role="button" aria-disabled="true">SIGN UP</a>
         <a href="#" class="btn btn-outline-danger" tabindex="-1" role="button" aria-disabled="true"> <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" fill="currentColor" class="bi bi-bicycle" viewBox="0 0 16 16">
           <path d="M4 4.5a.5.5 0 0 1 .5-.5H6a.5.5 0 0 1 0 1v.5h4.14l.386-1.158A.5.5 0 0 1 11 4h1a.5.5 0 0 1 0 1h-.64l-.311.935.807 1.29a3 3 0 1 1-.848.53l-.508-.812-2.076 3.322A.5.5 0 0 1 8 10.5H5.959a3 3 0 1 1-1.815-3.274L5 5.856V5h-.5a.5.5 0 0 1-.5-.5zm1.5 2.443-.508.814c.5.444.85 1.054.967 1.743h1.139L5.5 6.943zM8 9.057 9.598 6.5H6.402L8 9.057zM4.937 9.5a1.997 1.997 0 0 0-.487-.877l-.548.877h1.035zM3.603 8.092A2 2 0 1 0 4.937 10.5H3a.5.5 0 0 1-.424-.765l1.027-1.643zm7.947.53a2 2 0 1 0 .848-.53l1.026 1.643a.5.5 0 1 1-.848.53L11.55 8.623z"/>
@@ -55,11 +50,11 @@
     </div>
   </nav>
 
-  <div class="card text-bg-dark">
+  <div class="card text-bg-dark" style="margin-bottom: 1.4rem">
     <img src="https://www.orbea.com/img/microsite-modules/banner_full/05_the-anatomy-of-fast.jpg" alt="...">
     <div class="card-img-overlay">
       <h1 class="card-title">Tomas cycling BLOG</h1>
-      <p class="card-text">The older I get, the faster I was...</p>
+      <h5 class="card-text">The older I get, the faster I was...</h5>
       <p class="card-text"><small>Cycling since 2020</small></p>
     </div>
   </div>
@@ -75,17 +70,13 @@
         <img th:src="${post.picture}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title" th:text="${post.postName}"></h5>
+          <p><a th:href="@{/blog/{postId}(postId=${post.id})}" class=" link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">read more...</a></p>
         </div>
         <div class="card-footer">
           <div class="container text-center">
             <div class="row">
               <div class="col">
                 <small class="text-body-secondary" th:text="${post.postDate}"></small>
-              </div>
-              <div class="col">
-                <a th:href="@{/blog/{postId}(postId=${post.id})}" class="btn btn-secondary" tabindex="-1" role="button" aria-disabled="true">Read <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eyeglasses" viewBox="0 0 16 16">
-                  <path d="M4 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm2.625.547a3 3 0 0 0-5.584.953H.5a.5.5 0 0 0 0 1h.541A3 3 0 0 0 7 8a1 1 0 0 1 2 0 3 3 0 0 0 5.959.5h.541a.5.5 0 0 0 0-1h-.541a3 3 0 0 0-5.584-.953A1.993 1.993 0 0 0 8 6c-.532 0-1.016.208-1.375.547zM14 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
-                </svg> </a>
               </div>
               <div class="col">
                 <div>
@@ -98,55 +89,22 @@
             </div>
           </div>
         </div>
-
         </div>
       </div>
     </div>
-
-
   </div>
 
-<!--  <div class="card mb-3" th:each="post: ${posts}" style="max-width: 540px;">-->
-<!--    <div class="row g-0">-->
-<!--      <div class="col-md-4">-->
-<!--        <img th:src="${post.picture}" class="img-fluid rounded-start" alt="...">-->
-<!--      </div>-->
-<!--      <div class="col-md-8">-->
-<!--        <div class="card-body">-->
-<!--          <h5 class="card-title" th:text="${post.postName}"></h5>-->
-<!--          <p class="card-text" th:text="${post.postText}"></p>-->
-<!--          <p class="card-text"><small class="text-body-secondary" th:text="${post.postDate}"></small></p>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--  <div class="card text-bg-dark" th:each="post: ${posts}" >-->
-<!--    <img th:src="${post.picture}" class="card-img" alt="picture">-->
-<!--    <div class="card-img-overlay">-->
-<!--      <h5 class="card-title" th:text="${post.postName}"></h5>-->
-<!--      <p class="card-text" th:text="${post.postText}"></p>-->
-<!--      <p class="card-text"><small th:text="${post.postDate}"></small></p>-->
-<!--    </div>-->
-<!--  </div>-->
-
-
-
-<!--  <ul th:each="post: ${posts}">-->
-<!--    <li> <a th:href="@{/blog/{postId}(postId=${post.id})}" th:text="${post.postName}"></a>-->
-<!--      <h6>-->
-<!--        post created at:-->
-<!--        <small class="text-muted" th:text=" ${post.postDate}"></small>-->
-<!--      </h6>-->
-<!--                  <div th:text=" ${post.postDate}"></div>-->
-<!--      <div th:text="${post.postText}"></div>-->
-
-<!--    </li>-->
-
-
-
-<!--  </ul>-->
-</div>
+<footer  class=" py-3 my-4">
+  <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">TERMS OF SERVICE</a></li>
+    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">PRIVACY & COOKIE POLICY</a></li>
+    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">LEGAL NOTICES</a></li>
+    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">ADVERTISING OPPORTUNITIES</a></li>
+  </ul>
+  <p class="text-center text-muted">© 2020 Ride it like you stole it...</p>
+  <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"></script>
+  <script th:src="@{/js/language-switcher.js}"></script>
+</footer>
 
 
 </body>
