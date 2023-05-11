@@ -19,24 +19,21 @@
         </svg>
         <span > __</span>
 
-        <a th:href="@{/blog}" class="btn btn-outline-warning">BLOG</a>
-        <a th:href="@{/blog/create}" class="btn btn-outline-warning" tabindex="-1" role="button" aria-disabled="true">NEW POST</a>
-        <a th:href="@{/user/create}" href="#" class="btn btn-outline-warning" tabindex="-1" role="button" aria-disabled="true">SIGN UP</a>
-        <a href="#" class="btn btn-outline-danger" tabindex="-1" role="button" aria-disabled="true"> <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" fill="currentColor" class="bi bi-bicycle" viewBox="0 0 16 16">
-          <path d="M4 4.5a.5.5 0 0 1 .5-.5H6a.5.5 0 0 1 0 1v.5h4.14l.386-1.158A.5.5 0 0 1 11 4h1a.5.5 0 0 1 0 1h-.64l-.311.935.807 1.29a3 3 0 1 1-.848.53l-.508-.812-2.076 3.322A.5.5 0 0 1 8 10.5H5.959a3 3 0 1 1-1.815-3.274L5 5.856V5h-.5a.5.5 0 0 1-.5-.5zm1.5 2.443-.508.814c.5.444.85 1.054.967 1.743h1.139L5.5 6.943zM8 9.057 9.598 6.5H6.402L8 9.057zM4.937 9.5a1.997 1.997 0 0 0-.487-.877l-.548.877h1.035zM3.603 8.092A2 2 0 1 0 4.937 10.5H3a.5.5 0 0 1-.424-.765l1.027-1.643zm7.947.53a2 2 0 1 0 .848-.53l1.026 1.643a.5.5 0 1 1-.848.53L11.55 8.623z"/>
-        </svg> PORN</a>
+        <a th:href="@{/blog}" class="btn btn-outline-warning" th:text="#{lt.greitosSraiges.header.blog}"></a>
+        <a th:href="@{/blog/create}" th:text="#{lt.greitosSraiges.header.new.post}" class="btn btn-outline-warning" tabindex="-1" role="button" aria-disabled="true"></a>
+        <a th:href="@{/user/create}" th:text="#{lt.greitosSraiges.header.sign.up}" class="btn btn-outline-warning" tabindex="-1" role="button" aria-disabled="true"></a>
+        <a href="#" th:text="#{lt.greitosSraiges.header.porn}" class="btn btn-outline-danger" tabindex="-1" role="button" aria-disabled="true"></a>
 
       </div>
 
       <div>
 
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-          <button type="button" class="btn btn-light btn-sm">LOG IN</button>
-          <button type="button" class="btn btn-light btn-sm">LOG OUT</button>
+          <button th:text="#{lt.greitosSraiges.header.log.in}" type="button" class="btn btn-light btn-sm"></button>
+          <button th:text="#{lt.greitosSraiges.header.log.out}" type="button" class="btn btn-light btn-sm"></button>
 
           <div class="btn-group" role="group">
-            <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
+            <button th:text="#{lt.greitosSraiges.header.language.selector}" type="button" class="btn btn-light btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             </button>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">Dropdown link</a></li>
@@ -51,23 +48,23 @@
 
   <div class="card">
     <div class="card-body">
-      <h3 class="card-title">CREATE NEW POST:</h3>
+      <h3 th:text="#{lt.greitosSraiges.blog.create.post.title}" class="card-title"></h3>
 
       <form method="post" th:object="${post}" style="margin-bottom: 2rem">
         <div>
           <div class="mb-3">
-            <label for="header" class="form-label">Header</label>
-            <input type="text" class="form-control" id="header" placeholder="Post Header" th:field="*{postName}">
+            <label th:text="#{lt.greitosSraiges.blog.create.post.header}" for="header" class="form-label"></label>
+            <input type="text" class="form-control" id="header" th:field="*{postName}">
           </div>
           <div class="mb-3">
-            <label for="PostText" class="form-label">Post text</label>
+            <label th:text="#{lt.greitosSraiges.blog.create.post.text}" for="PostText" class="form-label"></label>
             <textarea class="form-control" id="PostText" rows="3" th:field="*{postText}"></textarea>
           </div>
           <div class="mb-3">
-            <label for="pictureLink" class="form-label">Picture link</label>
-            <input type="text" class="form-control" id="pictureLink" placeholder="Picture link" th:field="*{picture}">
+            <label th:text="#{lt.greitosSraiges.blog.create.post.picture}" for="pictureLink" class="form-label"></label>
+            <input type="text" class="form-control" id="pictureLink"  th:field="*{picture}">
           </div>
-          <button type="submit" class="btn btn-warning">CREATE POST</button>
+          <button th:text="#{lt.greitosSraiges.blog.create.post.button}" type="submit" class="btn btn-warning"></button>
           <h4 th:if="${message}" th:text = "${message}"></h4>
       </form>
 

@@ -3,6 +3,7 @@ package lt.code.academy.blogmongo.controller;
 import lombok.AllArgsConstructor;
 import lt.code.academy.blogmongo.dto.Comment;
 import lt.code.academy.blogmongo.dto.Post;
+import lt.code.academy.blogmongo.service.MessageService;
 import lt.code.academy.blogmongo.service.PostService;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,8 @@ import java.util.List;
 public class PostController {
 
     private final PostService postService;
+    private final MessageService messageService;
+
     @GetMapping()
     public String showAllPosts (Model model){
         model.addAttribute("posts", postService.showAllPosts());

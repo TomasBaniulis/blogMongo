@@ -5,7 +5,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-  <title>BLOG</title>
+  <title th:text="#{lt.greitosSraiges.blog.title}"></title>
 </head>
 
 <body style="background-color: black">
@@ -21,41 +21,38 @@
         </svg>
         <span > __</span>
 
-        <a th:href="@{/blog}" class="btn btn-outline-warning">BLOG</a>
-        <a th:href="@{/blog/create}" class="btn btn-outline-warning" tabindex="-1" role="button" aria-disabled="true">NEW POST</a>
-        <a th:href="@{/user/create}" class="btn btn-outline-warning" tabindex="-1" role="button" aria-disabled="true">SIGN UP</a>
-        <a href="#" class="btn btn-outline-danger" tabindex="-1" role="button" aria-disabled="true"> <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" fill="currentColor" class="bi bi-bicycle" viewBox="0 0 16 16">
-          <path d="M4 4.5a.5.5 0 0 1 .5-.5H6a.5.5 0 0 1 0 1v.5h4.14l.386-1.158A.5.5 0 0 1 11 4h1a.5.5 0 0 1 0 1h-.64l-.311.935.807 1.29a3 3 0 1 1-.848.53l-.508-.812-2.076 3.322A.5.5 0 0 1 8 10.5H5.959a3 3 0 1 1-1.815-3.274L5 5.856V5h-.5a.5.5 0 0 1-.5-.5zm1.5 2.443-.508.814c.5.444.85 1.054.967 1.743h1.139L5.5 6.943zM8 9.057 9.598 6.5H6.402L8 9.057zM4.937 9.5a1.997 1.997 0 0 0-.487-.877l-.548.877h1.035zM3.603 8.092A2 2 0 1 0 4.937 10.5H3a.5.5 0 0 1-.424-.765l1.027-1.643zm7.947.53a2 2 0 1 0 .848-.53l1.026 1.643a.5.5 0 1 1-.848.53L11.55 8.623z"/>
-        </svg> PORN</a>
+        <a th:href="@{/blog}" th:text="#{lt.greitosSraiges.header.blog}" class="btn btn-outline-warning"></a>
+        <a th:href="@{/blog/create}" th:text="#{lt.greitosSraiges.header.new.post}" class="btn btn-outline-warning" tabindex="-1" role="button" aria-disabled="true"></a>
+        <a th:href="@{/user/create}" th:text="#{lt.greitosSraiges.header.sign.up}" class="btn btn-outline-warning" tabindex="-1" role="button" aria-disabled="true"></a>
+        <a th:href="@{#}" th:text="#{lt.greitosSraiges.header.porn}" class="btn btn-outline-danger" tabindex="-1" role="button" aria-disabled="true"></a>
 
       </div>
 
       <div>
 
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-          <button type="button" class="btn btn-light btn-sm">LOG IN</button>
-          <button type="button" class="btn btn-light btn-sm">LOG OUT</button>
-
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-              <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-            </ul>
+          <button th:text="#{lt.greitosSraiges.header.log.in}" type="button" class="btn btn-light btn-sm"></button>
+          <button th:text="#{lt.greitosSraiges.header.log.out}" type="button" class="btn btn-light btn-sm"></button>
+            <div class="language-selector-width">
+              <select id="language-switcher"
+                      class="form-select form-select-sm"
+                      aria-label=".form-select-sm example">
+                <option selected>Select language:</option>
+                <option value="EN">EN</option>
+                <option value="LT">LT</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
-    </div>
   </nav>
 
   <div class="card text-bg-dark" style="margin-bottom: 1.4rem">
     <img src="https://www.orbea.com/img/microsite-modules/banner_full/05_the-anatomy-of-fast.jpg" alt="...">
     <div class="card-img-overlay">
-      <h1 class="card-title">Tomas cycling BLOG</h1>
-      <h5 class="card-text">The older I get, the faster I was...</h5>
-      <p class="card-text"><small>Cycling since 2020</small></p>
+      <h1 th:text="#{lt.greitosSraiges.blog.main.banner.name}" class="card-title"></h1>
+      <h5 th:text="#{lt.greitosSraiges.blog.main.banner.body.big}" class="card-text"></h5>
+      <p th:text="#{lt.greitosSraiges.blog.main.banner.body.small}" class="card-text"><small></small></p>
     </div>
   </div>
 
@@ -70,7 +67,7 @@
         <img th:src="${post.picture}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title" th:text="${post.postName}"></h5>
-          <p><a th:href="@{/blog/{postId}(postId=${post.id})}" class=" link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">read more...</a></p>
+          <p><a th:text="#{lt.greitosSraiges.blog.read.more}" th:href="@{/blog/{postId}(postId=${post.id})}" class=" link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"></a></p>
         </div>
         <div class="card-footer">
           <div class="container text-center">
@@ -96,10 +93,10 @@
 
 <footer  class=" py-3 my-4">
   <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">TERMS OF SERVICE</a></li>
-    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">PRIVACY & COOKIE POLICY</a></li>
-    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">LEGAL NOTICES</a></li>
-    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">ADVERTISING OPPORTUNITIES</a></li>
+    <li th:text="#{lt.greitosSraiges.footer.terms.of.service}" class="nav-item"><a href="#" class="nav-link px-2 text-muted"></a></li>
+    <li th:text="#{lt.greitosSraiges.footer.privacy.cookie.policy}" class="nav-item"><a href="#" class="nav-link px-2 text-muted"></a></li>
+    <li th:text="#{lt.greitosSraiges.footer.legal.notices}" class="nav-item"><a href="#" class="nav-link px-2 text-muted"></a></li>
+    <li th:text="#{lt.greitosSraiges.footer.advertising.opportunities}" class="nav-item"><a href="#" class="nav-link px-2 text-muted"></a></li>
   </ul>
   <p class="text-center text-muted">© 2020 Ride it like you stole it...</p>
   <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"></script>
