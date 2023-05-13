@@ -1,5 +1,6 @@
 package lt.code.academy.blogmongo.document;
 
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,7 @@ public class UserDocument {
     private String surname;
     private String username;
     private String avatar;
+    @Email
     private String email;
     private String password;
 

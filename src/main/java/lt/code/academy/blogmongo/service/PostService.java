@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -30,6 +31,19 @@ public class PostService {
                 stream().
                 map(Post::convert).
                 toList();
+    }
+
+    public List<Post> showSearchedPosts (String text){
+        List<Post>allPosts = showAllPosts();
+        List<Post>filteredPosts = new ArrayList<>();
+        for (Post post :allPosts){
+            if (post.getPostText().contains(text)){
+                filteredPosts.add(post);
+            }
+            continue;
+        }
+        return filteredPosts;
+
     }
 
     public Post showSinglePost (ObjectId id){
@@ -65,10 +79,6 @@ public class PostService {
         post.setComments(comments);
         postRepository.save(PostDocument.convert(post));
     }
-
-
-
-
 
 
 }

@@ -8,6 +8,9 @@ import lt.code.academy.blogmongo.dto.Comment;
 import lt.code.academy.blogmongo.dto.Post;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
+import org.springframework.data.mongodb.core.index.CompoundIndexes;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
@@ -22,6 +25,7 @@ public class PostDocument {
     @Id
     private ObjectId id;
     private String postName;
+    @TextIndexed
     private String postText;
     private LocalDate postDate;
     private String picture;

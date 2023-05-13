@@ -1,5 +1,6 @@
 package lt.code.academy.blogmongo.controller;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lt.code.academy.blogmongo.dto.Comment;
 import lt.code.academy.blogmongo.dto.Post;
@@ -8,10 +9,8 @@ import lt.code.academy.blogmongo.service.PostService;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ public class PostController {
     private final MessageService messageService;
 
     @GetMapping()
-    public String showAllPosts (Model model){
+    public String showAllPosts (Model model ){
         model.addAttribute("posts", postService.showAllPosts());
         return "blog";
     }
@@ -36,15 +35,17 @@ public class PostController {
         return "/form/post";
     }
     @PostMapping("/create")
-    public String createPost (Post post, Model model) {
+    public String createPost ( @Valid Post post, Model model, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return "/form/post";
+        }
         List<Comment> comments = new ArrayList<>();
         post.setPostDate(LocalDate.now());
         post.setComments(comments);
         postService.createPost(post);
         model.addAttribute("post", new Post());
         model.addAttribute("message", "Post created successfully");
-        return "/form/post";
-
+        return "redirect:/blog";
     }
 
     @GetMapping("/{postId}")
@@ -81,6 +82,14 @@ public class PostController {
     public String deleteComment (@PathVariable ObjectId postId, @PathVariable String commentId){
         postService.deleteComment(postId, commentId);
         return "redirect:/blog/" + postId;
+    }
+
+    @PostMapping ("/search")
+    public String search (Model model, @RequestParam ("searchText") String searchText){
+
+        model.addAttribute("posts", postService.showSearchedPosts(searchText));
+
+        return "redirect:/blog";
     }
 
 

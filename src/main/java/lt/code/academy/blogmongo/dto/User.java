@@ -1,5 +1,6 @@
 package lt.code.academy.blogmongo.dto;
 
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,12 +13,24 @@ import org.bson.types.ObjectId;
 @Getter
 public class User {
     private ObjectId id;
+    @NotBlank
+    @Size(min = 3, max = 20)
     private String name;
+    @NotBlank
+    @Size(min = 5, max=20)
     private String surname;
+    @NotBlank
+    @Max(20)
     private String username;
     private String avatar;
+    @NotBlank
+    @Email
     private String email;
+    @NotBlank
+    @Size(min = 4)
     private String password;
+    @NotBlank
+    @Size(min=4)
     private String repeatPassword;
 
     public User(ObjectId id, String name, String surname, String username, String avatar, String email, String password) {
