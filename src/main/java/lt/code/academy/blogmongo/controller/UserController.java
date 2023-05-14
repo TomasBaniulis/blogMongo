@@ -13,24 +13,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @AllArgsConstructor
 @Controller
-@RequestMapping("/user")
 public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/create")
+    @GetMapping("/public/user/create")
     public String openUserForm (Model model){
         model.addAttribute("user", new User());
         return "/form/user";
     }
 
-    @PostMapping("/create")
+    @PostMapping("/public/user/create")
     public String createUser (@Valid User user, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return "/form/user";
         }
         userService.createUser(user);
-        return "redirect:/blog";
+        return "redirect:/public/blog";
     }
 
 }

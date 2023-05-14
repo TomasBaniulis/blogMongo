@@ -18,23 +18,22 @@ import java.util.List;
 
 @AllArgsConstructor
 @Controller
-@RequestMapping("/blog")
 public class PostController {
 
     private final PostService postService;
     private final MessageService messageService;
 
-    @GetMapping()
+    @GetMapping("public/blog")
     public String showAllPosts (Model model ){
         model.addAttribute("posts", postService.showAllPosts());
         return "blog";
     }
-    @GetMapping("/create")
+    @GetMapping("/blog/create")
     public String openPostCreateForm (Model model){
         model.addAttribute("post", new Post());
         return "/form/post";
     }
-    @PostMapping("/create")
+    @PostMapping("/blog/create")
     public String createPost ( @Valid Post post, Model model, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             return "/form/post";
@@ -45,46 +44,46 @@ public class PostController {
         postService.createPost(post);
         model.addAttribute("post", new Post());
         model.addAttribute("message", "Post created successfully");
-        return "redirect:/blog";
+        return "redirect:/public/blog";
     }
 
-    @GetMapping("/{postId}")
+    @GetMapping("public/blog/{postId}")
     public String showSinglePost (@PathVariable ObjectId postId, Model model){
         model.addAttribute("post", postService.showSinglePost(postId));
         model.addAttribute("comment", new Comment());
         return "singlePost";
     }
-    @GetMapping("/{postId}/update")
+    @GetMapping("/blog/{postId}/update")
     public String updatePostForm (@PathVariable ObjectId postId, Model model){
         model.addAttribute("post", postService.showSinglePost(postId));
         return "/form/postUpdate";
     }
-    @PostMapping("/{postId}/update")
+    @PostMapping("/blog/{postId}/update")
     public String updatePost (Post post, @PathVariable ObjectId postId){
         postService.updatePost(post);
-        return "redirect:/blog/" + post.getId();
+        return "redirect:/public/blog/" + post.getId();
     }
 
-    @GetMapping("/{postId}/delete")
+    @GetMapping("/blog/{postId}/delete")
     public String deletePost (@PathVariable ObjectId postId, Model model){
         postService.deletePost(postId);
         model.addAttribute("posts", postService.showAllPosts());
-        return "redirect:/blog";
+        return "redirect:/public/blog";
     }
 
-    @PostMapping("/{postId}/newComment")
+    @PostMapping("/blog/{postId}/newComment")
     public String createComment (@PathVariable ObjectId postId, Comment comment){
         postService.createComment(postId, comment);
-        return "redirect:/blog/" + postId;
+        return "redirect:/public/blog/" + postId;
     }
 
-    @GetMapping("/{postId}/{commentId}/delete")
+    @GetMapping("/blog/{postId}/delete/{commentId}")
     public String deleteComment (@PathVariable ObjectId postId, @PathVariable String commentId){
         postService.deleteComment(postId, commentId);
-        return "redirect:/blog/" + postId;
+        return "redirect:/public/blog/" + postId;
     }
 
-    @PostMapping ("/search")
+    @PostMapping ("public/blog/search")
     public String search (Model model, @RequestParam ("searchText") String searchText){
 
         model.addAttribute("posts", postService.showSearchedPosts(searchText));

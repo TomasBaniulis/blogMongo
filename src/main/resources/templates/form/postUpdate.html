@@ -27,7 +27,7 @@
 
 
 
-<form method="post" th:object="${post}">
+<form method="post" th:object="${post}" th:action="@{/blog/{postId}/update(postId=${post.id})}">
   <div>
     <div class="mb-3">
       <label th:text="#{lt.greitosSraiges.blog.post.update.header}" for="header" class="form-label" style="color: white;"></label>

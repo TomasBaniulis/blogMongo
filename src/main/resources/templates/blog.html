@@ -34,14 +34,9 @@
     </div>
   </div>
 
-
-
-
 <div th:if = "${#lists.isEmpty(posts)}">
   <h5>There are no posts</h5>
   </div>
-
-
 
 <div class="container-sm" th:unless="${#lists.isEmpty(posts)}">
   <div class="row row-cols-1 row-cols-md-3 g-4" >
@@ -50,7 +45,7 @@
         <img th:src="${post.picture}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title" th:text="${post.postName}"></h5>
-          <p><a th:text="#{lt.greitosSraiges.blog.read.more}" th:href="@{/blog/{postId}(postId=${post.id})}" class=" link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"></a></p>
+          <p><a th:text="#{lt.greitosSraiges.blog.read.more}" th:href="@{/public/blog/{postId}(postId=${post.id})}" class=" link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"></a></p>
         </div>
         <div class="card-footer">
           <div class="container text-center">

@@ -18,18 +18,15 @@
             </svg>
             <span > __</span>
 
-            <a th:href="@{/blog}" th:text="#{lt.greitosSraiges.header.blog}" class="btn btn-outline-warning"></a>
+            <a th:href="@{/public/blog}" th:text="#{lt.greitosSraiges.header.blog}" class="btn btn-outline-warning"></a>
             <a th:href="@{/blog/create}" th:text="#{lt.greitosSraiges.header.new.post}" class="btn btn-outline-warning" tabindex="-1" role="button" aria-disabled="true"></a>
-            <a th:href="@{/user/create}" th:text="#{lt.greitosSraiges.header.sign.up}" class="btn btn-outline-warning" tabindex="-1" role="button" aria-disabled="true"></a>
+            <a th:href="@{/public/user/create}" th:text="#{lt.greitosSraiges.header.sign.up}" class="btn btn-outline-warning" tabindex="-1" role="button" aria-disabled="true"></a>
             <a th:href="@{#}" th:text="#{lt.greitosSraiges.header.porn}" class="btn btn-outline-danger" tabindex="-1" role="button" aria-disabled="true"></a>
-
         </div>
-
         <div>
-
             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                <button th:text="#{lt.greitosSraiges.header.log.in}" type="button" class="btn btn-light btn-sm"></button>
-                <button th:text="#{lt.greitosSraiges.header.log.out}" type="button" class="btn btn-light btn-sm"></button>
+                <a th:text="#{lt.greitosSraiges.header.log.in}" type="button" class="btn btn-light btn-sm" th:href="@{/login}"></a>
+                <a th:text="#{lt.greitosSraiges.header.log.out}" type="button" class="btn btn-light btn-sm" th:href="@{/logout}"></a>
                 <div class="language-selector-width">
                     <select id="language-switcher"
                             class="form-select form-select-sm"

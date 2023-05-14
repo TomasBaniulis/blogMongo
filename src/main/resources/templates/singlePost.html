@@ -29,7 +29,6 @@
                 <label th:text="#{lt.greitosSraiges.blog.single.post.comment.header}" for="comment" class="form-label" style="color: azure"></label>
                 <textarea class="form-control" id="comment" rows="3" th:placeholder="#{lt.greitosSraiges.blog.single.post.comment.placeholder}" th:field="*{commentText}"></textarea>
             </div>
-
             <button th:text="#{lt.greitosSraiges.blog.single.post.button.comment}" type="submit" class="btn btn-outline-light" style="margin-bottom: 1.5rem"></button>
 
     </form>
@@ -41,7 +40,7 @@
             <div class="card-body">
                 <p class="card-title" th:text="${comment.commentText}"></p>
                 <p class="card-text" th:text="${comment.dateTime}"></p>
-                <a th:text="#{lt.greitosSraiges.blog.single.post.button.delete}" href="#" class="btn btn btn-danger btn-sm " ></a>
+                <a th:text="#{lt.greitosSraiges.blog.single.post.button.delete}" th:href="@{/blog/{postId}/delete/{commentId}(postId=${post.id}, commentId=${comment.id})}" class="btn btn btn-danger btn-sm " ></a>
             </div>
         </div>
 
