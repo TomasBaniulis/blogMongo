@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head th:replace="fragments/fragments::head(#{lt.greitosSraiges.user.create.title})">
 </head>
 
@@ -12,7 +15,7 @@
         <img src="https://static.giant-bicycles.com/Images/PageBuilder/PageElements/singletrackmind_banner01_desktop_1598051527.jpg" class="card-img-top" alt="picture">
         <div class="card-body">
             <h3 th:text="#{lt.greitosSraiges.user.header}"> <strong></strong></h3>
-            <form method="post" th:object="${user}" class="row g-3" th:action="@{user/create}">
+            <form method="post" th:object="${user}" class="row g-3" th:action="@{/public/user/create}">
                 <div class="col-md-4">
                     <label th:text="#{lt.greitosSraiges.user.firstName}" for="validationServer01" class="form-label"></label>
                     <input type="text" th:field="*{name}" class="form-control" id="validationServer01" th:placeholder="#{lt.greitosSraiges.user.firstName.placeHolder}" required>
