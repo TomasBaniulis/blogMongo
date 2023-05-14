@@ -29,8 +29,6 @@ public class Post {
     private String picture;
     private List<Comment> comments;
 
-
-
     public static Post convert (PostDocument postDocument){
         return new Post(postDocument.getId(),
                 postDocument.getPostName(),
@@ -38,7 +36,5 @@ public class Post {
                 postDocument.getPostDate(),
                 postDocument.getPicture(),
                 postDocument.getComments());
-
     }
-
 }

@@ -66,7 +66,6 @@ public class PostService {
         List <Comment> comments = post.getComments();
         comment.setId(UUID.randomUUID().toString());
         comment.setDateTime(LocalDateTime.now());
-        comment.setUsername("Tomas");
         comments.add(comment);
         post.setComments(comments);
         postRepository.save(PostDocument.convert(post));

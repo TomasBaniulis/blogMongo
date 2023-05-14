@@ -28,6 +28,10 @@ public class UserController {
 //        if(bindingResult.hasErrors()){
 //            return "/form/user";
 //        }
+
+
+
+
         userService.createUser(user);
         return "redirect:/public/blog";
     }

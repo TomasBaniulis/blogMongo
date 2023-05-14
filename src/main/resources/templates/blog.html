@@ -26,8 +26,8 @@
           <h1 th:text="#{lt.greitosSraiges.blog.main.stories.card.header}" style="color: black"></h1>
         </div>
         <div class="col-4">
-          <form class="d-flex" role="search">
-            <input  class="form-control me-2" type="text" name="searchText" th:placeholder="#{lt.greitosSraiges.blog.main.stories.card.search.placeholder}" aria-label="Search" th:action="@{/blog/search}">
+          <form method="post" class="d-flex" role="search" th:action="@{/public/blog/search}">
+            <input  class="form-control me-2" type="text" name="searchText" th:placeholder="#{lt.greitosSraiges.blog.main.stories.card.search.placeholder}" aria-label="Search" >
             <button th:text="#{lt.greitosSraiges.blog.main.stories.card.search.button}" class="btn btn-dark" type="submit"></button>
           </form>
         </div>
@@ -70,6 +70,25 @@
       </div>
     </div>
   </div>
+
+
+<div class="mx-auto p-2" style="width: 200px;">
+  <form method="post" th:action="@{/public/blog}">
+    <input  type="hidden"  name="number" th:value="${posts.size()}" >
+    <button th:text="${'SHOW MORE'}" class="btn btn-light" type="submit"></button>
+  </form>
+</div>
+
+
+
+<!--<div class="flex-container" style="justify-content: center" >-->
+<!--  <form method="post" th:action="@{/public/blog}">-->
+<!--    <input  type="hidden"  name="number" th:value="${posts.size()}" >-->
+<!--    <button th:text="${'SHOW MORE'}" class="btn btn-light" type="submit"></button>-->
+<!--  </form>-->
+
+
+
 
 <footer th:replace="fragments/fragments::footer">
 

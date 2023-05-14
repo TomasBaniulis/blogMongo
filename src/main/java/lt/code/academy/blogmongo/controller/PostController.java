@@ -23,18 +23,48 @@ public class PostController {
     private final PostService postService;
     private final MessageService messageService;
 
-    @GetMapping("public/blog")
+    @GetMapping("/public/blog")
     public String showAllPosts (Model model ){
-        model.addAttribute("posts", postService.showAllPosts());
+        List<Post> allPosts = postService.showAllPosts();
+        List<Post>postsToShow = new ArrayList<>();
+        postsToShow.add(allPosts.get(0));
+        postsToShow.add(allPosts.get(1));
+        postsToShow.add(allPosts.get(2));
+
+        model.addAttribute("posts", postsToShow);
         return "blog";
     }
+
+    @PostMapping("/public/blog")
+    public String showMorePosts (@RequestParam ("number") String number, Model model){
+        List<Post> allPosts = postService.showAllPosts();
+        List<Post>postsToShow = new ArrayList<>();
+        int biggerNumber = Integer.parseInt(number) + 3;
+
+        if(biggerNumber < allPosts.size()){
+
+            for(int i =0; i<biggerNumber; i++ ){
+                postsToShow.add(allPosts.get(i));
+            }
+            model.addAttribute("posts", postsToShow);
+
+            return "blog";
+        }
+
+        postsToShow.addAll(allPosts);
+        model.addAttribute("posts", postsToShow);
+
+        return "blog";
+
+    }
+
     @GetMapping("/blog/create")
     public String openPostCreateForm (Model model){
         model.addAttribute("post", new Post());
         return "/form/post";
     }
     @PostMapping("/blog/create")
-    public String createPost ( @Valid Post post, Model model, BindingResult bindingResult) {
+    public String createPost ( @Valid Post post, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             return "/form/post";
         }
@@ -42,8 +72,6 @@ public class PostController {
         post.setPostDate(LocalDate.now());
         post.setComments(comments);
         postService.createPost(post);
-        model.addAttribute("post", new Post());
-        model.addAttribute("message", "Post created successfully");
         return "redirect:/public/blog";
     }
 
@@ -83,12 +111,17 @@ public class PostController {
         return "redirect:/public/blog/" + postId;
     }
 
-    @PostMapping ("public/blog/search")
+    @PostMapping ("/public/blog/search")
     public String search (Model model, @RequestParam ("searchText") String searchText){
 
         model.addAttribute("posts", postService.showSearchedPosts(searchText));
 
-        return "redirect:/blog";
+        return "blog";
+    }
+
+    @GetMapping("/porn")
+    public String showPorn (){
+        return "porn";
     }
 
 

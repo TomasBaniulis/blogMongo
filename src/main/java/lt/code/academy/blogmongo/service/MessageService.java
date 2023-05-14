@@ -12,6 +12,9 @@ public class MessageService {
 
 
     public String translate (String key){
+        if (key == null){
+            return null;
+        }
         return messageSource.getMessage(key, null, LocaleContextHolder.getLocale());
     }
 
