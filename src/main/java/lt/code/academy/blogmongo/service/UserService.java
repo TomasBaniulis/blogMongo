@@ -1,6 +1,7 @@
 package lt.code.academy.blogmongo.service;
 
 import com.mongodb.client.model.Filters;
+import jakarta.jws.soap.SOAPBinding;
 import lombok.AllArgsConstructor;
 import lt.code.academy.blogmongo.document.UserDocument;
 import lt.code.academy.blogmongo.dto.Role;
@@ -12,9 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @AllArgsConstructor
 @Service
@@ -36,6 +35,18 @@ public class UserService implements UserDetailsService {
     }
     public void updateUser (User user){
         userRepository.save(UserDocument.convert(user));
+    }
+
+    public List<String> getAllUserNames (){
+        List<User>users = userRepository.findAll()
+                .stream()
+                .map(User::convert)
+                .toList();
+        List<String>usernames = new ArrayList<>();
+        for (User user : users){
+            usernames.add(user.getUsername());
+        }
+        return usernames;
     }
 
     @Override

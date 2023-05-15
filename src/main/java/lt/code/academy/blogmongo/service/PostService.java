@@ -27,10 +27,10 @@ public class PostService {
     }
 
     public List<Post> showAllPosts() {
-        return postRepository.findAll().
-                stream().
-                map(Post::convert).
-                toList();
+        return postRepository.findAll()
+                .stream()
+                .map(Post::convert)
+                .toList();
     }
 
     public List<Post> showSearchedPosts(String text) {

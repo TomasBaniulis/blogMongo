@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Controller
 public class UserController {
@@ -27,6 +29,13 @@ public class UserController {
     public String createUser(@Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "/form/user";
+        }
+        List<String>userNames = userService.getAllUserNames();
+        for (String userName : userNames){
+            if(userName.equals(user.getUsername())){
+                user.setUsername("the user name you chose was already in use!!!");
+                return "/form/user";
+            }
         }
 
         userService.createUser(user);
