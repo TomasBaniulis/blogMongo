@@ -8,7 +8,6 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
     protected String getDatabaseName() {
         return null;
     }
-
     @Override
     protected boolean autoIndexCreation() {
         return true;

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lt.code.academy.blogmongo.document.UserDocument;
+import lt.code.academy.blogmongo.validator.annotation.FieldsComparator;
 import org.bson.types.ObjectId;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,26 +18,26 @@ import java.util.Set;
 @AllArgsConstructor
 @Setter
 @Getter
+@FieldsComparator(first = "password", second = "repeatPassword")
 public class User implements UserDetails {
     private ObjectId id;
-//    @NotBlank
-//    @Size(min = 3, max = 20)
+    @NotBlank
+    @Size(min = 3, max = 20)
     private String name;
-//    @NotBlank
-//    @Size(min = 5, max=20)
+    @NotBlank
+    @Size(min = 5, max = 20)
     private String surname;
-//    @NotBlank
-//    @Max(20)
+    @NotBlank
+    @Size(max = 20)
     private String username;
     private String avatar;
-//    @NotBlank
-//    @Email
+    @NotBlank
+    @Email
     private String email;
-//    @NotBlank
-//    @Size(min = 4)
+    @NotBlank
+    @Size(min = 4)
     private String password;
-//    @NotBlank
-//    @Size(min=4)
+    @NotBlank
     private String repeatPassword;
     private Set<Role> roles;
 
@@ -51,7 +52,7 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public static User convert (UserDocument userDocument){
+    public static User convert(UserDocument userDocument) {
         return new User(userDocument.getId(),
                 userDocument.getName(),
                 userDocument.getSurname(),

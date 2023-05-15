@@ -20,7 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 @Setter
 @Getter
-@Document (collection = "Posts")
+@Document(collection = "Posts")
 public class PostDocument {
     @Id
     private ObjectId id;
@@ -31,7 +31,7 @@ public class PostDocument {
     private String picture;
     private List<Comment> comments;
 
-    public  static PostDocument convert (Post post){
+    public static PostDocument convert(Post post) {
         return new PostDocument(post.getId(),
                 post.getPostName(),
                 post.getPostText(),

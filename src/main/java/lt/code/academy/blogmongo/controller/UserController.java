@@ -18,19 +18,16 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/public/user/create")
-    public String openUserForm (Model model){
+    public String openUserForm(Model model) {
         model.addAttribute("user", new User());
         return "/form/user";
     }
 
     @PostMapping("/public/user/create")
-    public String createUser (User user, BindingResult bindingResult){
-//        if(bindingResult.hasErrors()){
-//            return "/form/user";
-//        }
-
-
-
+    public String createUser(@Valid User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "/form/user";
+        }
 
         userService.createUser(user);
         return "redirect:/public/blog";

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragments/fragments::head(#{lt.greitosSraiges.user.create.title})">
 </head>
@@ -9,63 +8,61 @@
 <body style="background-color: black">
 <div class="container-sm">
 
-    <nav th:replace="fragments/fragments::navigation" ></nav>
+    <nav th:replace="fragments/fragments::navigation"></nav>
 
     <div class="card mb-3">
-        <img src="https://static.giant-bicycles.com/Images/PageBuilder/PageElements/singletrackmind_banner01_desktop_1598051527.jpg" class="card-img-top" alt="picture">
+        <img src="https://static.giant-bicycles.com/Images/PageBuilder/PageElements/singletrackmind_banner01_desktop_1598051527.jpg"
+             class="card-img-top" alt="picture">
         <div class="card-body">
-            <h3 th:text="#{lt.greitosSraiges.user.header}"> <strong></strong></h3>
+            <h3 th:text="#{lt.greitosSraiges.user.header}"><strong></strong></h3>
             <form method="post" th:object="${user}" class="row g-3" th:action="@{/public/user/create}">
-                <div class="col-md-4">
-                    <label th:text="#{lt.greitosSraiges.user.firstName}" for="validationServer01" class="form-label"></label>
-                    <input type="text" th:field="*{name}" class="form-control" id="validationServer01" th:placeholder="#{lt.greitosSraiges.user.firstName.placeHolder}" required>
-                    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback">
+                <div th:replace="fragments/fragments::inputWithError('name', 'Name:', ${user.name ne null}, 'text')"></div>
+                <div th:replace="fragments/fragments::inputWithError('surname', 'Surname:', ${user.surname ne null}, 'text')"></div>
+                <div th:replace="fragments/fragments::inputWithError('username', 'Username:', ${user.username ne null},'text')"></div>
+                <div th:replace="fragments/fragments::inputWithError('email', 'Email:', ${user.email ne null}, 'email')"></div>
+
+                <div class="mb-3">
+                    <label for="password"
+                           class="form-label">Password:</label>
+                    <input type="password"
+                           class="form-control"
+                           id="password"
+                           aria-describedby="passwordFeedback"
+                           th:classappend="${#fields.hasErrors('password') || #fields.hasErrors('global')} ? 'is-invalid' : (${user.password ne null} ? 'is-valid' : '')"
+                           th:field="*{password}" required>
+                    <div id="passwordFeedback"
+                         class="invalid-feedback">
+                        <div th:if="${#fields.hasErrors('password')}"
+                             th:errors="*{password}"></div>
+                        <div th:if="${#fields.hasErrors('global')}"
+                             th:errors="*{global}"></div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <label th:text="#{lt.greitosSraiges.user.lastName}" for="validationServer02" class="form-label"></label>
-                    <input type="text" th:field="*{surname}" class="form-control " id="validationServer02" th:placeholder="#{lt.greitosSraiges.user.lastName.placeHolder}" required>
-                    <div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" class="invalid-feedback">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <label th:text="#{lt.greitosSraiges.user.username}" for="validationServerUsername" class="form-label"></label>
-                    <div class="input-group has-validation">
-                        <span class="input-group-text" id="inputGroupPrepend3">@</span>
-                        <input type="text" th:field="*{username}" class="form-control" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" th:placeholder="#{lt.greitosSraiges.user.username.placeHolder}"required>
-                        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="invalid-feedback">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <label th:text="#{lt.greitosSraiges.user.email}" for="validationServer03" class="form-label"></label>
-                    <input type="email" th:field="*{email}" class="form-control" id="validationServer03" aria-describedby="validationServer03Feedback" th:placeholder="#{lt.greitosSraiges.user.email.placeholder}" required>
-                    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid-feedback">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <label th:text="#{lt.greitosSraiges.user.password}" for="validationServer05" class="form-label"></label>
-                    <input type="password" th:field="*{password}" class="form-control" id="validationServer05" aria-describedby="validationServer05Feedback" th:placeholder="#{lt.greitosSraiges.user.password.placeholder}" required>
-                    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <label th:text="#{lt.greitosSraiges.user.password.repeat}" or="validationServer05" class="form-label"></label>
-                    <input type="password" th:field="*{repeatPassword}" class="form-control" id="validationServer05" aria-describedby="validationServer05Feedback" th:placeholder="#{lt.greitosSraiges.user.password.repeat.placeHolder}" required>
-                    <div th:if="${#fields.hasErrors('repeatPassword')}" th:errors="*{repeatPassword}" class="invalid-feedback">
+                <div class="mb-3">
+                    <label for="repeatPassword"
+                           class="form-label">Repeat password:</label>
+                    <input type="password"
+                           class="form-control"
+                           id="repeatPassword"
+                           aria-describedby="repeatPasswordFeedback"
+                           th:classappend="${#fields.hasErrors('repeatPassword') || #fields.hasErrors('global')} ? 'is-invalid' : (${user.repeatPassword ne null} ? 'is-valid' : '')"
+                           th:field="*{repeatPassword}" required>
+                    <div id="repeatPasswordFeedback"
+                         class="invalid-feedback">
+                        <div th:if="${#fields.hasErrors('repeatPassword')}"
+                             th:errors="*{repeatPassword}"></div>
+                        <div th:if="${#fields.hasErrors('global')}"
+                             th:errors="*{global}"></div>
                     </div>
                 </div>
                 <div class="col-12">
-                    <button th:text="#{lt.greitosSraiges.user.button}" class="btn btn-outline-success" type="submit"></button>
+                    <button th:text="#{lt.greitosSraiges.user.button}"
+                            class="btn btn-outline-success" type="submit"></button>
                 </div>
             </form>
-
-
         </div>
     </div>
-
-    <footer  th:replace="fragments/fragments::footer"></footer>
 </div>
-
+<footer th:replace="fragments/fragments::footer"></footer>
 </body>
 </html>

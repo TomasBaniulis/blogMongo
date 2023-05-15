@@ -35,7 +35,7 @@ public class UserDocument {
     private String password;
     private Set<Role> roles;
 
-    public static UserDocument convert (User user){
+    public static UserDocument convert(User user) {
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         return new UserDocument(user.getId(),
                 user.getName(),

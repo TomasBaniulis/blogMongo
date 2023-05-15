@@ -7,6 +7,7 @@ import lt.code.academy.blogmongo.dto.Post;
 import lt.code.academy.blogmongo.service.MessageService;
 import lt.code.academy.blogmongo.service.PostService;
 import org.bson.types.ObjectId;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,9 +25,9 @@ public class PostController {
     private final MessageService messageService;
 
     @GetMapping("/public/blog")
-    public String showAllPosts (Model model ){
+    public String showAllPosts(Model model) {
         List<Post> allPosts = postService.showAllPosts();
-        List<Post>postsToShow = new ArrayList<>();
+        List<Post> postsToShow = new ArrayList<>();
         postsToShow.add(allPosts.get(0));
         postsToShow.add(allPosts.get(1));
         postsToShow.add(allPosts.get(2));
@@ -36,14 +37,14 @@ public class PostController {
     }
 
     @PostMapping("/public/blog")
-    public String showMorePosts (@RequestParam ("number") String number, Model model){
+    public String showMorePosts(@RequestParam("number") String number, Model model) {
         List<Post> allPosts = postService.showAllPosts();
-        List<Post>postsToShow = new ArrayList<>();
+        List<Post> postsToShow = new ArrayList<>();
         int biggerNumber = Integer.parseInt(number) + 3;
 
-        if(biggerNumber < allPosts.size()){
+        if (biggerNumber < allPosts.size()) {
 
-            for(int i =0; i<biggerNumber; i++ ){
+            for (int i = 0; i < biggerNumber; i++) {
                 postsToShow.add(allPosts.get(i));
             }
             model.addAttribute("posts", postsToShow);
@@ -58,14 +59,17 @@ public class PostController {
 
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/blog/create")
-    public String openPostCreateForm (Model model){
+    public String openPostCreateForm(Model model) {
         model.addAttribute("post", new Post());
         return "/form/post";
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/blog/create")
-    public String createPost ( @Valid Post post, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()){
+    public String createPost(@Valid Post post, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "/form/post";
         }
         List<Comment> comments = new ArrayList<>();
@@ -76,54 +80,61 @@ public class PostController {
     }
 
     @GetMapping("public/blog/{postId}")
-    public String showSinglePost (@PathVariable ObjectId postId, Model model){
+    public String showSinglePost(@PathVariable ObjectId postId, Model model) {
         model.addAttribute("post", postService.showSinglePost(postId));
         model.addAttribute("comment", new Comment());
         return "singlePost";
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/blog/{postId}/update")
-    public String updatePostForm (@PathVariable ObjectId postId, Model model){
+    public String updatePostForm(@PathVariable ObjectId postId, Model model) {
         model.addAttribute("post", postService.showSinglePost(postId));
         return "/form/postUpdate";
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/blog/{postId}/update")
-    public String updatePost (Post post, @PathVariable ObjectId postId){
+    public String updatePost(Post post, @PathVariable ObjectId postId) {
         postService.updatePost(post);
         return "redirect:/public/blog/" + post.getId();
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/blog/{postId}/delete")
-    public String deletePost (@PathVariable ObjectId postId, Model model){
+    public String deletePost(@PathVariable ObjectId postId, Model model) {
         postService.deletePost(postId);
         model.addAttribute("posts", postService.showAllPosts());
         return "redirect:/public/blog";
     }
 
+    @PreAuthorize("hasRole('USER')")
     @PostMapping("/blog/{postId}/newComment")
-    public String createComment (@PathVariable ObjectId postId, Comment comment){
+    public String createComment(@PathVariable ObjectId postId, Comment comment) {
         postService.createComment(postId, comment);
         return "redirect:/public/blog/" + postId;
     }
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/blog/{postId}/delete/{commentId}")
-    public String deleteComment (@PathVariable ObjectId postId, @PathVariable String commentId){
+    public String deleteComment(@PathVariable ObjectId postId, @PathVariable String commentId) {
         postService.deleteComment(postId, commentId);
         return "redirect:/public/blog/" + postId;
     }
 
-    @PostMapping ("/public/blog/search")
-    public String search (Model model, @RequestParam ("searchText") String searchText){
+    @PostMapping("/public/blog/search")
+    public String search(Model model, @RequestParam("searchText") String searchText) {
 
         model.addAttribute("posts", postService.showSearchedPosts(searchText));
 
         return "blog";
     }
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/porn")
-    public String showPorn (){
+    public String showPorn() {
         return "porn";
     }
-
 
 
 }

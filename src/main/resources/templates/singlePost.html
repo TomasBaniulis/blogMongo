@@ -21,20 +21,27 @@
                     <h3 class="card-title" th:text="${post.postName}"></h3>
                     <p class="card-text" th:text="${post.postText}"></p>
                     <p class="card-text"><small class="text-body-secondary" th:text="${post.postDate}"></small></p>
-                    <a sec:authorize="hasRole('ROLE_ADMIN')" th:text="#{lt.greitosSraiges.blog.single.post.button.update}" th:href="@{/blog/{postId}/update(postId=${post.id})}" class="btn btn-outline-secondary"></a>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')"
+                       th:text="#{lt.greitosSraiges.blog.single.post.button.update}"
+                       th:href="@{/blog/{postId}/update(postId=${post.id})}" class="btn btn-outline-secondary"></a>
                 </div>
             </div>
         </div>
     </div>
 
 
-    <form sec:authorize="hasRole('ROLE_USER')" method="post" th:object="${comment}" th:action="@{/blog/{postId}/newComment(postId=${post.id})}">
-            <div class="mb-3">
-                <label th:text="#{lt.greitosSraiges.blog.single.post.comment.header}" for="comment" class="form-label" style="color: azure"></label>
-                <textarea class="form-control" id="comment" rows="3" th:placeholder="#{lt.greitosSraiges.blog.single.post.comment.placeholder}" th:field="*{commentText}"></textarea>
-                <input type="hidden" name ="username" th:value="${#authentication.principal.username}">
-            </div>
-            <button th:text="#{lt.greitosSraiges.blog.single.post.button.comment}" type="submit" class="btn btn-outline-light" style="margin-bottom: 1.5rem"></button>
+    <form sec:authorize="hasRole('ROLE_USER')" method="post" th:object="${comment}"
+          th:action="@{/blog/{postId}/newComment(postId=${post.id})}">
+        <div class="mb-3">
+            <label th:text="#{lt.greitosSraiges.blog.single.post.comment.header}" for="comment" class="form-label"
+                   style="color: azure"></label>
+            <textarea class="form-control" id="comment" rows="3"
+                      th:placeholder="#{lt.greitosSraiges.blog.single.post.comment.placeholder}"
+                      th:field="*{commentText}"></textarea>
+            <input type="hidden" name="username" th:value="${#authentication.principal.username}">
+        </div>
+        <button th:text="#{lt.greitosSraiges.blog.single.post.button.comment}" type="submit"
+                class="btn btn-outline-light" style="margin-bottom: 1.5rem"></button>
 
     </form>
 
@@ -46,7 +53,10 @@
                 <p class="card-title" th:text="${comment.commentText}"></p>
                 <p class="card-text" th:text="${comment.dateTime}"></p>
                 <div sec:authorize="isAuthenticated()">
-                    <a th:if="${#authentication.principal.username.equals(comment.username)}" th:text="#{lt.greitosSraiges.blog.single.post.button.delete}" th:href="@{/blog/{postId}/delete/{commentId}(postId=${post.id}, commentId=${comment.id})}" class="btn btn btn-danger btn-sm " ></a>
+                    <a th:if="${#authentication.principal.username.equals(comment.username)}"
+                       th:text="#{lt.greitosSraiges.blog.single.post.button.delete}"
+                       th:href="@{/blog/{postId}/delete/{commentId}(postId=${post.id}, commentId=${comment.id})}"
+                       class="btn btn btn-danger btn-sm "></a>
                 </div>
             </div>
         </div>

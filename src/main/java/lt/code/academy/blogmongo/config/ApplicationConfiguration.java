@@ -17,7 +17,7 @@ import java.util.Locale;
 public class ApplicationConfiguration implements WebMvcConfigurer {
 
     @Bean
-    public LocaleResolver localeResolver () {
+    public LocaleResolver localeResolver() {
         SessionLocaleResolver resolver = new SessionLocaleResolver();
         resolver.setDefaultLocale(Locale.ENGLISH);
 
@@ -25,15 +25,15 @@ public class ApplicationConfiguration implements WebMvcConfigurer {
     }
 
     @Bean
-    public LocaleChangeInterceptor localeChangeInterceptor(){
+    public LocaleChangeInterceptor localeChangeInterceptor() {
         LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
         localeChangeInterceptor.setParamName("lang");
 
-        return  localeChangeInterceptor;
+        return localeChangeInterceptor;
     }
 
     @Bean
-    public MessageSource messageSource(){
+    public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
         messageSource.setBasename("classpath:messages");
         messageSource.setDefaultEncoding("UTF-8");

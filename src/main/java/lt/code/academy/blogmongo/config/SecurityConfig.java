@@ -12,9 +12,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests()
-                .requestMatchers("/login/**","/public/**", "/")
+                .requestMatchers("/login/**", "/public/**", "/")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -33,7 +33,7 @@ public class SecurityConfig {
                 .frameOptions()
                 .sameOrigin();
 
-     return httpSecurity.build();
+        return httpSecurity.build();
     }
 
     @Bean

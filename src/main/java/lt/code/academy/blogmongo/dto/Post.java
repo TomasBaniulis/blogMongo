@@ -13,6 +13,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 
 import java.time.LocalDate;
 import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -23,13 +24,13 @@ public class Post {
     @Size(min = 5, max = 20)
     private String postName;
     @NotBlank
-    @Size(min=5, max = 500)
+    @Size(min = 5, max = 500)
     private String postText;
     private LocalDate postDate;
     private String picture;
     private List<Comment> comments;
 
-    public static Post convert (PostDocument postDocument){
+    public static Post convert(PostDocument postDocument) {
         return new Post(postDocument.getId(),
                 postDocument.getPostName(),
                 postDocument.getPostText(),

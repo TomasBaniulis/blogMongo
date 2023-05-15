@@ -10,19 +10,22 @@
 
     <div class="card">
         <div class="card-body">
-        <h2> LOG IN:</h2>
-            <div th:if ="${param.error ne null}" class="alert alert-danger" role="alert">
+            <h2> LOG IN:</h2>
+            <div th:if="${param.error ne null}" class="alert alert-danger" role="alert">
                 WRONG USERNAME OR PASSWORD
             </div>
             <form method="post" th:action="@{/login}">
-                <input class="form-control form-control-lg" type="text" name = "username" placeholder="Username" aria-label=".form-control-lg example">
-                <input class="form-control form-control-lg" type="password" name="password" placeholder="Password" style="margin-bottom: 1.2rem" aria-label=".form-control-lg example">
+                <input class="form-control form-control-lg" type="text" name="username" placeholder="Username"
+                       aria-label=".form-control-lg example">
+                <input class="form-control form-control-lg" type="password" name="password" placeholder="Password"
+                       style="margin-bottom: 1.2rem" aria-label=".form-control-lg example">
                 <button type="submit" class="btn btn-dark">LOG IN</button>
             </form>
         </div>
-        </div>
-        <img src="https://i.nextmedia.com.au/Utils/ImageResizer.ashx?n=https%3a%2f%2fi.nextmedia.com.au%2fGalleries%2fSI202105091362_news.jpg&c=0" class="card-img-bottom" alt="MTB XC">
     </div>
+    <img src="https://i.nextmedia.com.au/Utils/ImageResizer.ashx?n=https%3a%2f%2fi.nextmedia.com.au%2fGalleries%2fSI202105091362_news.jpg&c=0"
+         class="card-img-bottom" alt="MTB XC">
+</div>
 
 
 </div>
