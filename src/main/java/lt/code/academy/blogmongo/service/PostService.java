@@ -37,7 +37,7 @@ public class PostService {
         List<Post> allPosts = showAllPosts();
         List<Post> filteredPosts = new ArrayList<>();
         for (Post post : allPosts) {
-            if (post.getPostText().contains(text)) {
+            if (post.getPostText().toLowerCase().contains(text.toLowerCase())) {
                 filteredPosts.add(post);
             }
         }
