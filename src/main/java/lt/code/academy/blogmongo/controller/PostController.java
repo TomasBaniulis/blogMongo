@@ -28,10 +28,9 @@ public class PostController {
     public String showAllPosts(Model model) {
         List<Post> allPosts = postService.showAllPosts();
         List<Post> postsToShow = new ArrayList<>();
-        postsToShow.add(allPosts.get(0));
-        postsToShow.add(allPosts.get(1));
-        postsToShow.add(allPosts.get(2));
-
+        for(int i=0; i<3; i++){
+            postsToShow.add(allPosts.get(i));
+        }
         model.addAttribute("posts", postsToShow);
         return "blog";
     }
